@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.log
+*.sqlite3
+*.env
+*.egg-info
+*.DS_Store
+*.pub
+Downloads
+Downloads.pub
+.venv/
+api.log

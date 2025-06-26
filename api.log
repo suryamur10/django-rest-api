@@ -1,0 +1,4 @@
+GET /messages called
+GET /messages called
+POST /messages called with data: {'text': 'This is a test from Postman!'}
+GET /messages called

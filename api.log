@@ -2,3 +2,10 @@ GET /messages called
 GET /messages called
 POST /messages called with data: {'text': 'This is a test from Postman!'}
 GET /messages called
+GET /messages called
+POST /messages called with data: {'text': 'Hi I am surya'}
+GET /messages called
+POST /messages called with data: {'text': ' bye see you '}
+GET /messages called
+GET /messages called
+GET /messages called

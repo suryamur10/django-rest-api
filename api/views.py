@@ -12,8 +12,13 @@ logger = logging.getLogger(__name__)
 @api_view(['GET', 'POST'])
 def message_list(request):
     if request.method == 'GET':
+        query = request.query_params.get('q')
         logger.info("GET /messages called")
-        messages = Message.objects.all()
+        if query:
+            messages = Message.objects.filter(text__istartswith=query)
+        else:
+            messages = Message.objects.all()
+
         serializer = MessageSerializer(messages, many=True)
         return Response(serializer.data)
 

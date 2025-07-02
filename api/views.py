@@ -31,3 +31,8 @@ def message_list(request):
         logger.error("POST /messages error: %s", serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # Create your views here.
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'index.html')
+

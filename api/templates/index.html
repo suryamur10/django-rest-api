@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Message Board</title>
+</head>
+<body>
+  <h1>Message Board</h1>
+
+  <form id="messageForm">
+    <input type="text" id="messageInput" placeholder="Type your message" required />
+    <button type="submit">Send</button>
+  </form>
+
+  <ul id="messageList"></ul>
+
+  <script>
+    const API_URL = '/messages/';
+
+    // Fetch and display messages
+    async function fetchMessages() {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+
+      const list = document.getElementById('messageList');
+      list.innerHTML = '';
+      data.forEach(msg => {
+        const li = document.createElement('li');
+        li.textContent = msg.text + ' (' + new Date(msg.created_at).toLocaleString() + ')';
+        list.appendChild(li);
+      });
+    }
+
+    // Handle form submission
+    document.getElementById('messageForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const text = document.getElementById('messageInput').value;
+
+      await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text })
+      });
+
+      document.getElementById('messageInput').value = '';
+      fetchMessages();
+    });
+
+    // Initial fetch
+    fetchMessages();
+  </script>
+</body>
+</html>
